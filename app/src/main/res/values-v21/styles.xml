@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="DialogTheme">
+        <item name="android:background">#ff85b8</item>
+        <item name="android:colorPrimary">#ff00</item>
+    </style>
+</resources>

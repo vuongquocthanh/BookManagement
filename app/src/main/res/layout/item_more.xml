@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:id="@+id/civLogo"
+        android:layout_height="25dp"
+        android:src="@drawable/change_password"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/tvFunction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:text="@string/changepassword"
+        style="@style/colorText"/>
+    <ImageView
+        android:id="@+id/imgNext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/next"/>
+
+</LinearLayout>

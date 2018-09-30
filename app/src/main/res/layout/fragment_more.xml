@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMore"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_below="@+id/toolbarMore"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/linearHeader"
+        android:orientation="vertical"
+        android:background="@drawable/navigation_drawer_background"
+        android:gravity="center">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:civ_border_width="2sp"
+            app:civ_border_color="@color/colorAccent"
+            android:src="@drawable/avatar1"/>
+        <TextView
+            android:id="@+id/tvName"
+            android:textStyle="bold"
+            style="@style/colorText"
+            android:layout_marginTop="5dp"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vuong Quoc Thanh"/>
+    </LinearLayout>
+    <!--<FrameLayout-->
+        <!--android:id="@+id/framelayoutMore"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:layout_below="@+id/toolbarMore">-->
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/navigation_drawer_background"-->
+            <!--android:scaleType="centerCrop"/>-->
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:src="@drawable/avatar1"-->
+            <!--app:civ_border_color="@color/colorAccent"-->
+            <!--app:civ_border_width="2sp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:layout_marginLeft="155dp"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/tvName"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/vuongquocthanh"-->
+            <!--style="@style/colorText"-->
+            <!--android:textSize="25sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_marginTop="135dp"-->
+            <!--android:layout_marginLeft="95dp"/>-->
+    <!--</FrameLayout>-->
+    <ListView
+        android:id="@+id/lvMore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearHeader"></ListView>
+
+</RelativeLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryDark">#0D0E10</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="colorBackground">#23252D</color>
+    <color name="colorChecked">#FFFFFF</color>
+    <color name="colorUncheked">#95989A</color>
+    <color name="colorView">#7D8D9B</color>
+    <color name="background">#23252d</color>
+    <color name="background_Button">#009688</color>
+    <color name="background_ItemLibrary">#95989A</color>
+    <color name="colorTitleLibrary">#C5C5C8</color>
+    <color name="background_tablayout">#009688</color>
+    <color name="colorSubTitleLibrary">#D4D4D4</color>
+</resources>

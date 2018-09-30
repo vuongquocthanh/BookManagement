@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/book"
+        android:icon="@drawable/book"
+        android:title="Book"
+        app:showAsAction="always"/>
+    <item android:id="@+id/library"
+        android:icon="@drawable/library"
+        android:title="Library"
+        app:showAsAction="always"/>
+    <item android:id="@+id/statistics"
+        android:title="Statistic"
+        android:icon="@drawable/ic_statistics"
+        app:showAsAction="always"/>
+    <item android:id="@+id/invoice"
+        android:icon="@drawable/invoice"
+        android:title="Invoice"
+        app:showAsAction="always"/>
+    <item android:id="@+id/more"
+        android:icon="@drawable/more"
+        android:title="More"
+        app:showAsAction="always"/>
+
+</menu>
