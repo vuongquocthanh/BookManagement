@@ -74,4 +74,11 @@
     <string name="notify_already_exist">Username already exist!</string>
     <string name="notify_already_exists">Username already exists!</string>
     <string name="notify_no_record_found">No Records Found!</string>
+    <string name="addCategory">Add Category</string>
+    <string name="notify_empty_category_id">Category ID must not be empty!</string>
+    <string name="notify_empty_category_name">Category Name must not be empty!</string>
+    <string name="notify_empty_category_position">Category Position must not be empty!</string>
+    <string name="notify_empty_category_description">Category Description must not be empty!</string>
+    <string name="notify_error_category_id">Category already exits!</string>
+    <string name="notify_error_category_id_length">Category ID must not exceed 5 characters</string>
 </resources>

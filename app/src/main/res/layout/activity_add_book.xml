@@ -45,11 +45,11 @@
                 android:layout_height="wrap_content"
                 app:counterMaxLength="100"
                 android:textColorHint="#dadad8"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
                 app:counterTextAppearance="@style/counterTextApprearance">
                 <EditText
-                    android:id="@+id/edTitle"
+                    android:id="@+id/edBookTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Title"
@@ -58,13 +58,45 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterMaxLength="300"
+                app:counterMaxLength="100"
                 android:textColorHint="#dadad8"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
                 app:counterTextAppearance="@style/counterTextApprearance">
                 <EditText
-                    android:id="@+id/edAuthor"
+                    android:id="@+id/edBookDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description"
+                    style="@style/colorText"/>
+            </android.support.design.widget.TextInputLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:layout_gravity="left"
+                android:textColor="#dadad8"
+                android:textSize="17sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="4dp"/>
+            <Spinner
+                android:id="@+id/spBookCategoryId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/background"
+                android:popupBackground="@color/background"
+                android:paddingLeft="4dp"></Spinner>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:counterMaxLength="300"
+                android:textColorHint="#dadad8"
+                android:layout_marginTop="10dp"
+                app:counterEnabled="true"
+                app:counterTextAppearance="@style/counterTextApprearance">
+                <EditText
+                    android:id="@+id/edBookAuthor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Author"
@@ -75,11 +107,11 @@
                 android:layout_height="wrap_content"
                 app:counterMaxLength="300"
                 android:textColorHint="#dadad8"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
                 app:counterTextAppearance="@style/counterTextApprearance">
                 <EditText
-                    android:id="@+id/edPublisher"
+                    android:id="@+id/edBookPublisher"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Publisher"
@@ -94,7 +126,7 @@
                 app:counterEnabled="true"
                 app:counterTextAppearance="@style/counterTextApprearance">
                 <EditText
-                    android:id="@+id/edPrice"
+                    android:id="@+id/edBookPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Price"
@@ -105,22 +137,40 @@
                 android:layout_height="wrap_content"
                 app:counterMaxLength="300"
                 android:textColorHint="#dadad8"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="10dp"
                 app:counterEnabled="true"
                 app:counterTextAppearance="@style/counterTextApprearance">
                 <EditText
-                    android:id="@+id/edCount"
+                    android:id="@+id/edBookCount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Count"
                     style="@style/colorText"/>
             </android.support.design.widget.TextInputLayout>
+            <ImageView
+                android:id="@+id/imgBookAvatar"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/gallery1"
+                android:layout_marginTop="10dp"/>
+            <Button
+                android:drawableLeft="@drawable/ic_foldersvg"
+                android:background="@color/background_Button"
+                android:text="Choose Image"
+                style="@style/colorText"
+                android:textStyle="bold"
+                android:id="@+id/btChooseBookAvatar"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"/>
             <LinearLayout
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <Button
+                    android:id="@+id/btSaveBook"
                     style="@style/colorText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -129,6 +179,7 @@
                     android:background="@color/background_Button"
                     android:layout_marginRight="5dp"/>
                 <Button
+                    android:id="@+id/btCancelBook"
                     style="@style/colorText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -138,6 +189,7 @@
                     android:layout_marginLeft="5dp"/>
             </LinearLayout>
             <Button
+                android:id="@+id/btShowBook"
                 android:layout_marginTop="16dp"
                 style="@style/colorText"
                 android:layout_width="match_parent"

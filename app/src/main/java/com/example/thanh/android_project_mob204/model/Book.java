@@ -1,37 +1,90 @@
 package com.example.thanh.android_project_mob204.model;
 
 public class Book {
-    private String title;
-    private int avatar;
-    private String content;
+    private String bookId, bookName,bookDescription, bookCategoryId, bookAuthor, bookPublisher, bookPrice, bookCount;
+    private byte[] bookAvatar;
 
-    public Book(String title, int avatar, String content) {
-        this.title = title;
-        this.avatar = avatar;
-        this.content = content;
+    public Book(String bookId, String bookName, String bookDescription, String bookCategoryId, String bookAuthor, String bookPublisher, String bookPrice, String bookCount, byte[] bookAvatar) {
+        this.bookId = bookId;
+        this.bookName = bookName;
+        this.bookDescription = bookDescription;
+        this.bookCategoryId = bookCategoryId;
+        this.bookAuthor = bookAuthor;
+        this.bookPublisher = bookPublisher;
+        this.bookPrice = bookPrice;
+        this.bookCount = bookCount;
+        this.bookAvatar = bookAvatar;
     }
 
-    public String getTitle() {
-        return title;
+    public String getBookId() {
+        return bookId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getBookName() {
+        return bookName;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    public String getContent() {
-        return content;
+    public String getBookDescription() {
+        return bookDescription;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBookDescription(String bookDescription) {
+        this.bookDescription = bookDescription;
+    }
+
+    public String getBookCategoryId() {
+        return bookCategoryId;
+    }
+
+    public void setBookCategoryId(String bookCategoryId) {
+        this.bookCategoryId = bookCategoryId;
+    }
+
+    public String getBookAuthor() {
+        return bookAuthor;
+    }
+
+    public void setBookAuthor(String bookAuthor) {
+        this.bookAuthor = bookAuthor;
+    }
+
+    public String getBookPublisher() {
+        return bookPublisher;
+    }
+
+    public void setBookPublisher(String bookPublisher) {
+        this.bookPublisher = bookPublisher;
+    }
+
+    public String getBookPrice() {
+        return bookPrice;
+    }
+
+    public void setBookPrice(String bookPrice) {
+        this.bookPrice = bookPrice;
+    }
+
+    public String getBookCount() {
+        return bookCount;
+    }
+
+    public void setBookCount(String bookCount) {
+        this.bookCount = bookCount;
+    }
+
+    public byte[] getBookAvatar() {
+        return bookAvatar;
+    }
+
+    public void setBookAvatar(byte[] bookAvatar) {
+        this.bookAvatar = bookAvatar;
     }
 }

@@ -7,7 +7,7 @@
         app:showAsAction="always"/>
     <item android:id="@+id/library"
         android:icon="@drawable/library"
-        android:title="Library"
+        android:title="Categories"
         app:showAsAction="always"/>
     <item android:id="@+id/statistics"
         android:title="Statistic"

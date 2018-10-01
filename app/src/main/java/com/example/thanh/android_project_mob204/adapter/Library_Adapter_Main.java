@@ -47,7 +47,7 @@ public class Library_Adapter_Main extends RecyclerView.Adapter<Library_Adapter_M
         public ViewHolder(View itemView) {
             super(itemView);
             tvTitleLibrary = itemView.findViewById(R.id.tvTitle);
-            tvSubTitle = itemView.findViewById(R.id.tvSubTitleLibrary);
+//            tvSubTitle = itemView.findViewById(R.id.tvSubTitleLibrary);
             imgAvatarLibrary = itemView.findViewById(R.id.imgAvatarLibrary);
         }
     }

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ndroid="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/background"
+    android:padding="15dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Book"
+            android:textStyle="bold"
+            style="@style/colorText"
+            android:textSize="35sp"
+            android:layout_marginBottom="10dp"/>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            android:textColorHint="#dadad8"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book ID"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            app:counterMaxLength="50"
+            android:textColorHint="#dadad8"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book Title"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/tilEditBookDescription"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--app:counterEnabled="true"-->
+            <!--app:counterMaxLength="255"-->
+            <!--android:textColorHint="#dadad8"-->
+            <!--app:counterTextAppearance="@style/counterTextApprearance">-->
+            <!--<EditText-->
+                <!--android:id="@+id/edEditBookDescription"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="Book Description"-->
+                <!--style="@style/colorText"/>-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category: "
+            android:layout_gravity="left"
+            android:layout_marginLeft="4dp"
+            android:textSize="18sp"
+            style="@style/colorText"/>
+        <Spinner
+            android:id="@+id/spEditBookCategoryId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ndroid:backgroundTint="@color/background"
+            android:popupBackground="@color/background"
+            android:paddingLeft="4dp"
+            android:layout_marginBottom="10dp"></Spinner>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookAuthor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:textColorHint="#dadad8"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book Author"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookPublisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:textColorHint="#dadad8"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookPublisher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book Publisher"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:textColorHint="#dadad8"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book Price"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilEditBookCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:counterEnabled="true"
+            android:textColorHint="#dadad8"
+            app:counterMaxLength="50"
+            app:counterTextAppearance="@style/counterTextApprearance">
+            <EditText
+                android:id="@+id/edEditBookCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Book Count"
+                style="@style/colorText"/>
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>
