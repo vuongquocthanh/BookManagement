@@ -23,9 +23,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.BottomNavigationBarActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.AddBookActivity"
             android:screenOrientation="portrait" />
@@ -42,7 +40,8 @@
             android:name=".activity.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.ListUser" />
-        <activity android:name=".activity.AddCategoryActivity"></activity>
+        <activity android:name=".activity.AddCategoryActivity" />
+        <activity android:name=".InvoiceDetailActivity"></activity>
     </application>
 
 </manifest>

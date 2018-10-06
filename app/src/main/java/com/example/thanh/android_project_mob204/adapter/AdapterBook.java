@@ -30,7 +30,7 @@ import com.example.thanh.android_project_mob204.sqlitedao.DAOCategory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder>{
+public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder> {
 
     private List<Book> listBook;
     private DatabaseHelper databaseHelper;
@@ -51,6 +51,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder>{
     private TextInputLayout tilEditBookCount;
     private EditText edEditBookCount;
     private Spinner spEditBookCategoryId;
+
     public AdapterBook(List<Book> listBook) {
         this.listBook = listBook;
     }
@@ -82,15 +83,16 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder>{
         return listBook.size();
     }
 
-    public void removeItem(int position){
+    public void removeItem(int position) {
         listBook.remove(position);
         notifyDataSetChanged();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvBookTitle, tvBookContent;
-        public ImageView imgBookAvatar, imgBookRead, imgBookDelete,imgBookEdit;
+        public ImageView imgBookAvatar, imgBookRead, imgBookDelete, imgBookEdit;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             tvBookTitle = itemView.findViewById(R.id.tvBookTitle);
@@ -151,10 +153,10 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder>{
                     edEditBookCount.setText(daoBook.getAllBook().get(getAdapterPosition()).getBookCount());
                     spEditBookCategoryId = viewDialogEditBook.findViewById(R.id.spEditBookCategoryId);
                     List<String> listCategoryName = new ArrayList<>();
-                    for(int i=0; i<daoCategory.getAllCategory().size(); i++){
+                    for (int i = 0; i < daoCategory.getAllCategory().size(); i++) {
                         listCategoryName.add(daoCategory.getAllCategory().get(i).getCategoryName());
                     }
-                    ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(itemView.getContext(), R.layout.spin,R.id.text,listCategoryName);
+                    ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(itemView.getContext(), R.layout.spin, R.id.text, listCategoryName);
                     spEditBookCategoryId.setAdapter(adapterCategory);
 
                     builder.setView(viewDialogEditBook);
@@ -180,6 +182,7 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder>{
                             listBook.get(getAdapterPosition()).setBookCount(edEditBookCount.getText().toString().trim());
 
                             tvBookTitle.setText(edEditBookTitle.getText().toString().trim());
+
                         }
                     });
                     builder.show();

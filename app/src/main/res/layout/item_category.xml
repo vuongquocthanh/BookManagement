@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/background_ItemLibrary"
+        android:background="#4a5151"
         android:padding="10dp">
         <TextView
             android:id="@+id/tvTitleCategory"

@@ -1,35 +1,35 @@
 package com.example.thanh.android_project_mob204.model;
 
+import java.text.SimpleDateFormat;
+
 public class Invoice {
-    private String avatarInvoice, title, date;
+    private String invoice_ID;
+    private long invoice_date;
 
-    public Invoice(String avatarInvoice, String title, String date) {
-        this.avatarInvoice = avatarInvoice;
-        this.title = title;
-        this.date = date;
+    public Invoice(String invoice_ID, long invoice_date) {
+        this.invoice_ID = invoice_ID;
+        this.invoice_date = invoice_date;
     }
 
-    public String getAvatarInvoice() {
-        return avatarInvoice;
+    public String getInvoice_ID() {
+        return invoice_ID;
     }
 
-    public void setAvatarInvoice(String avatarInvoice) {
-        this.avatarInvoice = avatarInvoice;
+    public void setInvoice_ID(String invoice_ID) {
+        this.invoice_ID = invoice_ID;
     }
 
-    public String getTitle() {
-        return title;
+    public long getInvoice_date() {
+        return invoice_date;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setInvoice_date(long invoice_date) {
+        this.invoice_date = invoice_date;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public String toStringInvoiceDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+        String dateConvert = simpleDateFormat.format(invoice_date);
+        return dateConvert;
     }
 }

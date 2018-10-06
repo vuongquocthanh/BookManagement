@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
@@ -36,12 +37,12 @@
             android:textColor="@color/colorAccent"/>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lvInvoice"
-        android:layout_below="@+id/tliFindInvoice"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerviewInvoice"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"></ListView>
+        android:layout_below="@+id/tliFindInvoice">
+    </android.support.v7.widget.RecyclerView>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
@@ -50,7 +51,7 @@
         android:backgroundTint="#009688"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginRight="15dp"/>
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="30dp"/>
 
 </RelativeLayout>

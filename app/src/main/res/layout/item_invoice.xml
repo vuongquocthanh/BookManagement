@@ -1,45 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp"
-    android:background="@color/colorBackground">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:layout_margin="10dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgInvoice"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/invoice_icon"/>
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="10"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:id="@+id/tvIvoiceName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title"
-            style="@style/colorText"
-            android:textSize="16sp"
-            android:layout_marginBottom="5dp"/>
-        <TextView
-            android:id="@+id/tvIvoiceDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/date"
-            style="@style/colorText"
-            android:textSize="16sp"/>
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/imgDelete"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:src="@android:drawable/ic_menu_delete"
-        android:layout_gravity="center"/>
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#4a5151">
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imgInvoiceAvatar"
+            android:src="@drawable/invoice_icon"/>
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="5"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvInvoiceID"
+                android:text="Invoice ID"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                style="@style/colorText"
+                android:layout_marginBottom="5dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvInvoiceDate"
+                android:text="Date"
+                android:textStyle="italic"
+                android:textSize="16sp"
+                style="@style/colorText"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgInvoiceDelete"
+            android:src="@android:drawable/ic_menu_delete"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="10dp"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

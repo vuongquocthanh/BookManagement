@@ -6,6 +6,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -14,23 +16,35 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.thanh.android_project_mob204.R;
+import com.example.thanh.android_project_mob204.adapter.AdapterInvoice;
+import com.example.thanh.android_project_mob204.database.DatabaseHelper;
+import com.example.thanh.android_project_mob204.fragment.InvoiceFragment;
+import com.example.thanh.android_project_mob204.model.Invoice;
+import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoice;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddInvoiceActivity extends AppCompatActivity {
     private Toolbar toolbarAddInvoice;
     private EditText edInvoiceID, edInvoiceDate;
-    private Button btInvoiceDate, btInvoiceAdd;
+    private Button btInvoiceAdd;
+    private DatabaseHelper databaseHelper;
+    private DAOInvoice daoInvoice;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_invoice);
+        databaseHelper = new DatabaseHelper(this);
+        daoInvoice = new DAOInvoice(databaseHelper);
         toolbarAddInvoice = findViewById(R.id.toolbarAddInvoice);
         edInvoiceID = findViewById(R.id.edInvoiceID);
         edInvoiceDate =findViewById(R.id.edInvoiceDate);
-        btInvoiceDate = findViewById(R.id.btSelectInvoiceDate);
         btInvoiceAdd = findViewById(R.id.btInvoiceAdd);
         toolbarAddInvoice.setNavigationIcon(R.drawable.ic_nav);
         toolbarAddInvoice.setTitle("Add Invoice");
@@ -49,15 +63,35 @@ public class AddInvoiceActivity extends AppCompatActivity {
                 String invoiceID = edInvoiceID.getText().toString().trim();
                 String date = edInvoiceDate.getText().toString().trim();
                 if(invoiceID.equalsIgnoreCase("") || date.equalsIgnoreCase("")){
-                    Toast.makeText(AddInvoiceActivity.this, "Vui long dien day du thong tin!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddInvoiceActivity.this, "Please do not empty!", Toast.LENGTH_SHORT).show();
                 }else{
+                    long mili = 0;
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+                    try {
+                        Date d = simpleDateFormat.parse(edInvoiceDate.getText().toString().trim());
+                        mili = d.getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    daoInvoice.insertInvoice(new Invoice(edInvoiceID.getText().toString().trim(), mili));
+                    insertDataToList();
                     Intent intent = new Intent(AddInvoiceActivity.this, AddDetailInvoiceActivity.class);
                     intent.putExtra("invoiceID", invoiceID);
                     startActivity(intent);
                 }
+                finish();
             }
         });
 
+    }
+
+    public void insertDataToList(){
+        InvoiceFragment.listInvoice = new ArrayList<>();
+        InvoiceFragment.listInvoice = daoInvoice.getAllInvoice();
+        InvoiceFragment.adapterInvoice = new AdapterInvoice(InvoiceFragment.listInvoice);
+        InvoiceFragment.recyclerViewInvoice.setAdapter(InvoiceFragment.adapterInvoice);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AddInvoiceActivity.this);
+        InvoiceFragment.recyclerViewInvoice.setLayoutManager(layoutManager);
     }
 
     public void showDialogDate(View view) {
@@ -69,7 +103,14 @@ public class AddInvoiceActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,R.style.Theme_AppCompat_DayNight_Dialog, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                edInvoiceDate.setText(dayOfMonth+"/"+month+"/"+year);
+                long datePicked = 0;
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(year, month, dayOfMonth);
+                datePicked = calendar.getTimeInMillis();
+//                String datePicked_ = new Date(datePicked).toString();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+                String strDate = simpleDateFormat.format(datePicked);
+                edInvoiceDate.setText(strDate);
             }
         }, year, month, day);
         datePickerDialog.show();

@@ -23,6 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Constant {
         db.execSQL(CREATE_TABLE_USER);
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_BOOK);
+        db.execSQL(CREATE_TABLE_INVOICE);
+        db.execSQL(CREATE_TABLE_INVOICE_DETAIL);
     }
 
     @Override
@@ -30,6 +32,8 @@ public class DatabaseHelper extends SQLiteOpenHelper implements Constant {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_BOOK);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_INVOICE);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_INVOICE_DETAIL);
         onCreate(db);
     }
 }

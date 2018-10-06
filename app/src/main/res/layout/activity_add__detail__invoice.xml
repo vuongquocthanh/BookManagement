@@ -14,74 +14,126 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark"></android.support.v7.widget.Toolbar>
 
-    <android.support.design.widget.TextInputLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorAccent"
-        android:padding="10dp"
-        app:counterMaxLength="50"
-        app:counterEnabled="true"
-        app:counterTextAppearance="@style/counterTextApprearance">
-        <EditText
-            android:id="@+id/edDetailInvoiceID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/invoiceID"
-            android:textColor="@color/colorAccent"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorAccent"
-        android:padding="10dp"
-        app:counterMaxLength="50"
-        app:counterEnabled="true"
-        app:counterTextAppearance="@style/counterTextApprearance">
-        <EditText
-            android:id="@+id/edInvoiceBookID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bookID"
-            android:textColor="@color/colorAccent"/>
-    </android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColorHint="@color/colorAccent"
-        android:padding="10dp"
-        app:counterMaxLength="50"
-        app:counterEnabled="true"
-        app:counterTextAppearance="@style/counterTextApprearance">
-        <EditText
-            android:id="@+id/edInvoiceCount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/count"
-            android:textColor="@color/colorAccent"/>
-    </android.support.design.widget.TextInputLayout>
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:padding="10dp">
-        <Button
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginRight="5dp"
-            android:text="@string/btAdd"
-            android:textColor="@color/colorAccent"
-            android:background="@color/background_Button"/>
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="5dp"
-            android:text="@string/pay"
-            android:textColor="@color/colorAccent"
-            android:background="@color/background_Button"/>
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/counterTextApprearance">
+
+                <EditText
+                    android:id="@+id/edInvoiceID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="@string/invoiceID"
+                    android:textColor="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/counterTextApprearance">
+
+                <EditText
+                    android:id="@+id/edInvoiceBookID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/bookID"
+                    android:textColor="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/colorAccent"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:counterTextAppearance="@style/counterTextApprearance">
+
+                <EditText
+                    android:id="@+id/edInvoiceCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/count"
+                    android:textColor="@color/colorAccent" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btInvoiceDetailAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/background_Button"
+                    android:text="@string/btAdd"
+                    android:textColor="@color/colorAccent" />
+
+                <Button
+                    android:id="@+id/btPay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:background="@color/background_Button"
+                    android:text="@string/pay"
+                    android:textColor="@color/colorAccent" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Amount: "
+                    android:textColor="@color/background_Button"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    android:text="Amount"
+                    android:textColor="@color/background_Button"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerviewInvoiceDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"></android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>
