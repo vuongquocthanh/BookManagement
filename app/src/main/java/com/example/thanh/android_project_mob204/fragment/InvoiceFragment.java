@@ -39,21 +39,21 @@ public class InvoiceFragment extends Fragment {
     public static DatabaseHelper databaseHelper;
     public static DAOInvoice daoInvoice;
     private EditText edFindInvoice;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_invoice, container, false);
+        databaseHelper = new DatabaseHelper(getContext());
+        daoInvoice = new DAOInvoice(databaseHelper);
         edFindInvoice = view.findViewById(R.id.edFindInvoice);
         toolbarInvoice = view.findViewById(R.id.toolbarInvoice);
         toolbarInvoice.setTitle("Invoice");
         toolbarInvoice.setTitleTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbarInvoice);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbarInvoice);
         toolbarInvoice.setTitleMarginStart(30);
-
-        databaseHelper = new DatabaseHelper(getContext());
-        daoInvoice = new DAOInvoice(databaseHelper);
+        searchInvoice();
         floatingActionButton = view.findViewById(R.id.fabAdd);
-        search();
         recyclerViewInvoice = view.findViewById(R.id.recyclerviewInvoice);
         listInvoice = new ArrayList<>();
         listInvoice = daoInvoice.getAllInvoice();
@@ -61,7 +61,6 @@ public class InvoiceFragment extends Fragment {
         recyclerViewInvoice.setAdapter(adapterInvoice);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerViewInvoice.setLayoutManager(layoutManager);
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,50 +68,52 @@ public class InvoiceFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        Log.e("value", listInvoice.get(1).getInvoice_ID());
+
         return view;
     }
 
-
-
-    public void initList(){
-        listInvoice = new ArrayList<>();
-        listInvoice = daoInvoice.getAllInvoice();
-        adapterInvoice = new AdapterInvoice(listInvoice);
-        recyclerViewInvoice.setAdapter(adapterInvoice);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerViewInvoice.setLayoutManager(layoutManager);
-    }
-    public void search(){
+    public void searchInvoice(){
         edFindInvoice.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().equalsIgnoreCase("")){
-//                    Reset ListView
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.toString().equalsIgnoreCase("")){
                     initList();
                 }else{
-                    searchItem(s.toString());
-                    Log.e("size", String.valueOf(listInvoice.size()));
+                    searchItem(charSequence.toString());
+
+                    Log.e("size", listInvoice.size()+"");
                 }
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
 
             }
         });
     }
 
     public void searchItem(String textToSearch){
-        for(int i=0; i<listInvoice.size(); i++){
-            if(!(listInvoice.get(i).getInvoice_ID().toLowerCase().contains(textToSearch.toLowerCase()))){
+        for (int i=0; i<listInvoice.size(); i++){
+            if(!(listInvoice.get(i).getInvoice_ID().contains(textToSearch))){
                 listInvoice.remove(i);
             }
         }
         adapterInvoice.notifyDataSetChanged();
+    }
+
+    public void initList() {
+        listInvoice = new ArrayList<>();
+        listInvoice = daoInvoice.getAllInvoice();
+        adapterInvoice = new AdapterInvoice(listInvoice);
+        recyclerViewInvoice.setAdapter(adapterInvoice);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerViewInvoice.setLayoutManager(layoutManager);
     }
 
 }

@@ -49,8 +49,6 @@ public class BookFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_book, container, false);
-
-
         toolbar = view.findViewById(R.id.toolBar);
         edEnterName = view.findViewById(R.id.edEnterName);
         toolbar.setTitle("Book");
@@ -70,26 +68,8 @@ public class BookFragment extends Fragment {
         rvBook.setLayoutManager(layoutManager);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), ((LinearLayoutManager) layoutManager).getOrientation());
         rvBook.addItemDecoration(dividerItemDecoration);
-//        createData();
-//        adapter = new BookAdapter(getContext(), R.layout.item_listview_book, listBook);
-//        lvBook.setAdapter(adapter);
-//        Bundle bundle = getArguments();
-//        String usernameLogin = null;
-//        if(bundle!=null){
-//            usernameLogin = bundle.getString("username");
-//        }
-//        Log.e("username", usernameLogin);
         return view;
     }
-//
-//    private void createData() {
-//        listBook = new ArrayList<>();
-//        listBook.add(new Book("The Awkward", R.drawable.book1, "Born là một bí ẩn trong văn học mạng, người ta chỉ biết đến cô qua khối lượng tác phẩm khá lớn đã được in thành sách."));
-//        listBook.add(new Book("The End", R.drawable.book2, "Born là một bí ẩn trong văn học mạng, người ta chỉ biết đến cô qua khối lượng tác phẩm khá lớn đã được in thành sách."));
-//        listBook.add(new Book("The 1-Our", R.drawable.book3, "Born là một bí ẩn trong văn học mạng, người ta chỉ biết đến cô qua khối lượng tác phẩm khá lớn đã được in thành sách."));
-//        listBook.add(new Book("Improve Your Social Skill", R.drawable.book4, "Born là một bí ẩn trong văn học mạng, người ta chỉ biết đến cô qua khối lượng tác phẩm khá lớn đã được in thành sách."));
-//        listBook.add(new Book("The Dress and The Girl", R.drawable.book6, "Born là một bí ẩn trong văn học mạng, người ta chỉ biết đến cô qua khối lượng tác phẩm khá lớn đã được in thành sách."));
-//    }
 
     public void search(){
         edEnterName.addTextChangedListener(new TextWatcher() {

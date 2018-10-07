@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -158,7 +159,16 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder> {
                     }
                     ArrayAdapter<String> adapterCategory = new ArrayAdapter<String>(itemView.getContext(), R.layout.spin, R.id.text, listCategoryName);
                     spEditBookCategoryId.setAdapter(adapterCategory);
+                    spEditBookCategoryId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                            spEditBookCategoryId.setSelection(i);
+                        }
+                        @Override
+                        public void onNothingSelected(AdapterView<?> adapterView) {
 
+                        }
+                    });
                     builder.setView(viewDialogEditBook);
                     builder.setPositiveButton("Cancel", new DialogInterface.OnClickListener() {
                         @Override
@@ -169,19 +179,31 @@ public class AdapterBook extends RecyclerView.Adapter<AdapterBook.ViewHolder> {
                     builder.setNegativeButton("Save", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            daoBook.updateBook(new Book(edEditBookId.getText().toString(), edEditBookTitle.getText().toString(),
-                                    daoBook.getAllBook().get(getAdapterPosition()).getBookDescription(), spEditBookCategoryId.getSelectedItem().toString().trim(),
-                                    edEditBookAuthor.getText().toString(), edEditBookPublisher.getText().toString(),
-                                    edEditBookPrice.getText().toString(), edEditBookCount.getText().toString(), daoBook.getAllBook().get(getAdapterPosition()).getBookAvatar()));
-                            listBook.get(getAdapterPosition()).setBookId(edEditBookId.getText().toString().trim());
-                            listBook.get(getAdapterPosition()).setBookName(edEditBookTitle.getText().toString().trim());
-//                            listBook.get(getAdapterPosition()).setBookDescription(edEditBookDescription.getText().toString().trim());
-                            listBook.get(getAdapterPosition()).setBookAuthor(edEditBookAuthor.getText().toString().trim());
-                            listBook.get(getAdapterPosition()).setBookPublisher(edEditBookPublisher.getText().toString().trim());
-                            listBook.get(getAdapterPosition()).setBookPrice(edEditBookPrice.getText().toString().trim());
-                            listBook.get(getAdapterPosition()).setBookCount(edEditBookCount.getText().toString().trim());
 
-                            tvBookTitle.setText(edEditBookTitle.getText().toString().trim());
+                            final Book book = listBook.get(getAdapterPosition());
+                            book.setBookId(edEditBookId.getText().toString());
+                            book.setBookAuthor(edEditBookAuthor.getText().toString());
+                            book.setBookCount(edEditBookCount.getText().toString());
+                            book.setBookName(edEditBookTitle.getText().toString());
+                            book.setBookPrice(edEditBookPrice.getText().toString());
+                            book.setBookPublisher(edEditBookPublisher.getText().toString());
+                            daoBook.updateBook(book);
+                            listBook.set(getAdapterPosition(), book);
+                            notifyDataSetChanged();
+//                            daoBook.updateBook(new Book(edEditBookId.getText().toString(), edEditBookTitle.getText().toString(),
+//                                    daoBook.getAllBook().get(getAdapterPosition()).getBookDescription(), spEditBookCategoryId.getSelectedItem().toString().trim(),
+//                                    edEditBookAuthor.getText().toString(), edEditBookPublisher.getText().toString(),
+//                                    edEditBookPrice.getText().toString(), edEditBookCount.getText().toString(), daoBook.getAllBook().get(getAdapterPosition()).getBookAvatar()));
+//                            listBook.get(getAdapterPosition()).setBookId(edEditBookId.getText().toString().trim());
+//                            listBook.get(getAdapterPosition()).setBookName(edEditBookTitle.getText().toString().trim());
+////                            listBook.get(getAdapterPosition()).setBookDescription(edEditBookDescription.getText().toString().trim());
+//                            listBook.get(getAdapterPosition()).setBookAuthor(edEditBookAuthor.getText().toString().trim());
+//                            listBook.get(getAdapterPosition()).setBookPublisher(edEditBookPublisher.getText().toString().trim());
+//                            listBook.get(getAdapterPosition()).setBookPrice(edEditBookPrice.getText().toString().trim());
+//                            listBook.get(getAdapterPosition()).setBookCount(edEditBookCount.getText().toString().trim());
+//
+//                            tvBookTitle.setText(edEditBookTitle.getText().toString().trim());
+                            notifyDataSetChanged();
 
                         }
                     });
