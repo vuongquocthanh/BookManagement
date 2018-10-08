@@ -33,6 +33,7 @@ public interface Constant {
 //    -----------------------------------------
 
     //    TABLE BOOK
+    String SOLUONG = "SOLUONG";
     String TABLE_BOOK = "BOOK";
     String COLUMN_BOOK_ID = "BookId";
     String COLUMN_BOOK_NAME = "BookName";

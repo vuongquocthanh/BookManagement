@@ -105,4 +105,45 @@ public class DAOBook implements Constant {
         values.put(COLUMN_BOOK_AVATAR, book.getBookAvatar());
         return database.update(TABLE_BOOK, values, COLUMN_BOOK_ID+" =?", new String[]{String.valueOf(book.getBookId())});
     }
+
+    public List<Book> getBookTop10(String month){
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
+        List<Book> listBook  = new ArrayList<>();
+//        if(Integer.parseInt(month)<10){
+//            month = "0"+month;
+//        }
+
+        String sql = "SELECT * FROM "+TABLE_BOOK
+                +" INNER JOIN "+TABLE_INVOICE_DETAIL+" ON "
+                +TABLE_BOOK+"."+COLUMN_BOOK_ID+" = "+TABLE_INVOICE_DETAIL+"."+BOOK_ID
+                +" INNER JOIN "+TABLE_INVOICE+" ON "
+                +TABLE_INVOICE+"."+COLUMN_INVOICE_ID+" = "+TABLE_INVOICE_DETAIL+"."+INVOICE_ID;
+
+//        String sql = "SELECT * FROM "+TABLE_BOOK+" INNER JOIN "+TABLE_INVOICE_DETAIL
+//                +" WHERE "+TABLE_BOOK+"."+COLUMN_BOOK_ID+" = "+TABLE_INVOICE_DETAIL+"."+BOOK_ID;
+//        String sql = "SELECT * FROM "+TABLE_BOOK+""
+//                +", SUM("+PURCHASE_NUMBER+") AS "+SOLUONG+" FROM "
+//                +TABLE_INVOICE_DETAIL+" INNER JOIN "+TABLE_INVOICE+" ON "+TABLE_INVOICE+"."+COLUMN_INVOICE_ID+" = "
+//                +TABLE_INVOICE_DETAIL+"."+INVOICE_ID+" WHERE STRFTIME('%M', "+TABLE_INVOICE+"."+COLUMN_INVOICE_DATE+") = "
+//                +"'"+month+"'"+" GROUP BY "+COLUMN_BOOK_ID+" ORDER BY "+SOLUONG+" DESC LIMIT 10";
+        Cursor cursor = database.rawQuery(sql, null);
+        if(cursor.moveToFirst()){
+            do{
+                Book book = null;
+                String book_id = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_ID));
+                String book_name = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_NAME));
+                String book_description = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_DESCRIPTION));
+                String book_category_id = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_CATEGORY_ID));
+                String book_author = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_AUTHOR));
+                String book_publisher = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_PUBLISHER));
+                String book_price = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_PRICE));
+                String book_count = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_COUNT));
+                byte[] book_avatar = cursor.getBlob(cursor.getColumnIndex(COLUMN_BOOK_AVATAR));
+                book = new Book(book_id, book_name,book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
+                listBook.add(book);
+            }while (cursor.moveToNext());
+        }
+        database.close();
+        return listBook;
+    }
 }
