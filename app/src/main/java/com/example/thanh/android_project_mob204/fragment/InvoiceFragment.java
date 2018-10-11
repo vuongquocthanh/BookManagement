@@ -68,7 +68,6 @@ public class InvoiceFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        Log.e("value", listInvoice.get(1).getInvoice_ID());
 
         return view;
     }

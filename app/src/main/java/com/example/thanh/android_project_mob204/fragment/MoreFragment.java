@@ -61,6 +61,7 @@ public class MoreFragment extends Fragment {
 
         User user = userDAO.getUser(bundle.getString("usernameLogin"));
         tvName.setText(user.getName());
+        Log.e("name", tvName.getText().toString());
 
 
         toolbar = viewMore.findViewById(R.id.toolbarMore);

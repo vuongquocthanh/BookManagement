@@ -28,7 +28,7 @@ public class Invoice {
     }
 
     public String toStringInvoiceDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateConvert = simpleDateFormat.format(invoice_date);
         return dateConvert;
     }

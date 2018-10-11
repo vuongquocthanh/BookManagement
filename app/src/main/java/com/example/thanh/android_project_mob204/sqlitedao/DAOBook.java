@@ -19,7 +19,7 @@ public class DAOBook implements Constant {
         this.databaseHelper = databaseHelper;
     }
 
-    public void insertBook(Book book){
+    public void insertBook(Book book) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_BOOK_ID, book.getBookId());
@@ -35,17 +35,17 @@ public class DAOBook implements Constant {
         database.close();
     }
 
-    public Book getBook(String bookId){
+    public Book getBook(String bookId) {
         Book book = null;
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         Cursor cursor = database.query(TABLE_BOOK, new String[]{COLUMN_BOOK_ID,
-                COLUMN_BOOK_NAME,COLUMN_BOOK_DESCRIPTION, COLUMN_BOOK_CATEGORY_ID,
-                COLUMN_BOOK_AUTHOR,COLUMN_BOOK_PUBLISHER,
-                COLUMN_BOOK_PRICE,COLUMN_BOOK_COUNT,COLUMN_BOOK_AVATAR,},
-                COLUMN_BOOK_ID+" =?",
+                        COLUMN_BOOK_NAME, COLUMN_BOOK_DESCRIPTION, COLUMN_BOOK_CATEGORY_ID,
+                        COLUMN_BOOK_AUTHOR, COLUMN_BOOK_PUBLISHER,
+                        COLUMN_BOOK_PRICE, COLUMN_BOOK_COUNT, COLUMN_BOOK_AVATAR,},
+                COLUMN_BOOK_ID + " =?",
                 new String[]{bookId},
                 null, null, null);
-        if(cursor!=null && cursor.moveToFirst()){
+        if (cursor != null && cursor.moveToFirst()) {
             String book_id = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_ID));
             String book_name = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_NAME));
             String book_description = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_DESCRIPTION));
@@ -55,18 +55,18 @@ public class DAOBook implements Constant {
             String book_price = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_PRICE));
             String book_count = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_COUNT));
             byte[] book_avatar = cursor.getBlob(cursor.getColumnIndex(COLUMN_BOOK_AVATAR));
-            book = new Book(book_id, book_name,book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
+            book = new Book(book_id, book_name, book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
         }
         return book;
     }
 
-    public List<Book> getAllBook(){
+    public List<Book> getAllBook() {
         List<Book> listBook = new ArrayList<>();
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
-        String selectQuery = "SELECT * FROM "+TABLE_BOOK;
+        String selectQuery = "SELECT * FROM " + TABLE_BOOK;
         Cursor cursor = database.rawQuery(selectQuery, null);
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 Book book = null;
                 String book_id = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_ID));
                 String book_name = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_NAME));
@@ -77,21 +77,21 @@ public class DAOBook implements Constant {
                 String book_price = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_PRICE));
                 String book_count = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_COUNT));
                 byte[] book_avatar = cursor.getBlob(cursor.getColumnIndex(COLUMN_BOOK_AVATAR));
-                book = new Book(book_id, book_name,book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
+                book = new Book(book_id, book_name, book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
                 listBook.add(book);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         database.close();
         return listBook;
     }
 
-    public void deleteBook(Book book){
+    public void deleteBook(Book book) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
-        database.delete(TABLE_BOOK, COLUMN_BOOK_ID+" =?", new String[]{String.valueOf(book.getBookId())});
+        database.delete(TABLE_BOOK, COLUMN_BOOK_ID + " =?", new String[]{String.valueOf(book.getBookId())});
         database.close();
     }
 
-    public int updateBook(Book book){
+    public int updateBook(Book book) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_BOOK_ID, book.getBookId());
@@ -103,21 +103,44 @@ public class DAOBook implements Constant {
         values.put(COLUMN_BOOK_PRICE, book.getBookPrice());
         values.put(COLUMN_BOOK_COUNT, book.getBookCount());
         values.put(COLUMN_BOOK_AVATAR, book.getBookAvatar());
-        return database.update(TABLE_BOOK, values, COLUMN_BOOK_ID+" =?", new String[]{String.valueOf(book.getBookId())});
+        return database.update(TABLE_BOOK, values, COLUMN_BOOK_ID + " =?", new String[]{String.valueOf(book.getBookId())});
     }
 
-    public List<Book> getBookTop10(String month){
+    public List<Book> getBookTop10(String month) {
         SQLiteDatabase database = databaseHelper.getWritableDatabase();
-        List<Book> listBook  = new ArrayList<>();
-//        if(Integer.parseInt(month)<10){
-//            month = "0"+month;
+        List<Book> listBook = new ArrayList<>();
+//        if (Integer.parseInt(month) < 10) {
+//            month = "0" + month;
 //        }
 
-        String sql = "SELECT * FROM "+TABLE_BOOK
-                +" INNER JOIN "+TABLE_INVOICE_DETAIL+" ON "
-                +TABLE_BOOK+"."+COLUMN_BOOK_ID+" = "+TABLE_INVOICE_DETAIL+"."+BOOK_ID
-                +" INNER JOIN "+TABLE_INVOICE+" ON "
-                +TABLE_INVOICE+"."+COLUMN_INVOICE_ID+" = "+TABLE_INVOICE_DETAIL+"."+INVOICE_ID;
+//        String sql = "SELECT maSach, SUM(soLuong) as soluong FROM HoaDonChiTiet INNER JOIN HoaDon " +
+//                "ON HoaDon.maHoaDon = HoaDonChiTiet.maHoaDon WHERE strftime('%m',HoaDon.ngayMua) = '"+month+"' " +
+//                "GROUP BY maSach ORDER BY soluong DESC LIMIT 10";
+
+        String sql = "SELECT "+BOOK_ID+", "+"SUM("+PURCHASE_NUMBER+") AS "+SOLUONG+" FROM "
+                +TABLE_INVOICE_DETAIL+" INNER JOIN "+TABLE_INVOICE
+                +" ON "+TABLE_INVOICE_DETAIL+"."+INVOICE_ID+" = "+TABLE_INVOICE+"."+COLUMN_INVOICE_ID
+                +" WHERE strftime('%Y-%m',"+TABLE_INVOICE+"."+COLUMN_INVOICE_DATE+"/ 1000, 'unixepoch') = '" + month + "' " +
+                "GROUP BY "+BOOK_ID+" ORDER BY "+SOLUONG+" DESC LIMIT 10";
+
+//        String sql = "SELECT " + TABLE_BOOK+"."+COLUMN_BOOK_ID + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_NAME + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_DESCRIPTION + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_CATEGORY_ID + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_AUTHOR + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_PUBLISHER + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_PRICE + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_COUNT + ", "
+//                + TABLE_BOOK+"."+COLUMN_BOOK_AVATAR
+//                +", "+"SUM("+PURCHASE_NUMBER+") AS "+SOLUONG
+//                + " FROM " + TABLE_BOOK
+//                + " INNER JOIN " + TABLE_INVOICE_DETAIL + " ON "
+//                + TABLE_BOOK + "." + COLUMN_BOOK_ID + " = " + TABLE_INVOICE_DETAIL + "." + BOOK_ID
+//                + " INNER JOIN " + TABLE_INVOICE + " ON "
+//                + TABLE_INVOICE + "." + COLUMN_INVOICE_ID + " = " + TABLE_INVOICE_DETAIL + "." + INVOICE_ID
+//                + " WHERE strftime('%y-%M',"+TABLE_INVOICE+"."+COLUMN_INVOICE_DATE+"/ 1000, 'unixepoch') LIKE '" + month + "' " +
+//                "GROUP BY "+TABLE_INVOICE_DETAIL + "." + BOOK_ID+" ORDER BY "+SOLUONG+" DESC LIMIT 10";
+//                +" WHERE "+TABLE_INVOICE+"."+COLUMN_INVOICE_DATE+" LIKE "+"'%"+month+"%'";
 
 //        String sql = "SELECT * FROM "+TABLE_BOOK+" INNER JOIN "+TABLE_INVOICE_DETAIL
 //                +" WHERE "+TABLE_BOOK+"."+COLUMN_BOOK_ID+" = "+TABLE_INVOICE_DETAIL+"."+BOOK_ID;
@@ -127,8 +150,8 @@ public class DAOBook implements Constant {
 //                +TABLE_INVOICE_DETAIL+"."+INVOICE_ID+" WHERE STRFTIME('%M', "+TABLE_INVOICE+"."+COLUMN_INVOICE_DATE+") = "
 //                +"'"+month+"'"+" GROUP BY "+COLUMN_BOOK_ID+" ORDER BY "+SOLUONG+" DESC LIMIT 10";
         Cursor cursor = database.rawQuery(sql, null);
-        if(cursor.moveToFirst()){
-            do{
+        if (cursor.moveToFirst()) {
+            do {
                 Book book = null;
                 String book_id = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_ID));
                 String book_name = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_NAME));
@@ -139,9 +162,9 @@ public class DAOBook implements Constant {
                 String book_price = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_PRICE));
                 String book_count = cursor.getString(cursor.getColumnIndex(COLUMN_BOOK_COUNT));
                 byte[] book_avatar = cursor.getBlob(cursor.getColumnIndex(COLUMN_BOOK_AVATAR));
-                book = new Book(book_id, book_name,book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
+                book = new Book(book_id, book_name, book_description, book_category_id, book_author, book_publisher, book_price, book_count, book_avatar);
                 listBook.add(book);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
         database.close();
         return listBook;

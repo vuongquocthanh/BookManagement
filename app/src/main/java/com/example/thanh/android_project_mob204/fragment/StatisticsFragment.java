@@ -12,12 +12,25 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.thanh.android_project_mob204.R;
 import com.example.thanh.android_project_mob204.adapter.StatisticsPagerAdapter;
+import com.example.thanh.android_project_mob204.database.DatabaseHelper;
+import com.example.thanh.android_project_mob204.model.Invoice;
+import com.example.thanh.android_project_mob204.model.InvoiceDetail;
+import com.example.thanh.android_project_mob204.sqlitedao.DAOBook;
+import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoice;
+import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoiceDetail;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsFragment extends Fragment {
     private Toolbar toolbarStatistics;
@@ -39,6 +52,7 @@ public class StatisticsFragment extends Fragment {
         statisticsPagerAdapter = new StatisticsPagerAdapter(getChildFragmentManager());
         viewPager.setAdapter(statisticsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
         return view;
     }
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/background">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvBookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:layout_marginBottom="5dp"/>
+        <ImageView
+            android:id="@+id/imgBookAvatar"
+            android:layout_width="80dp"
+            android:layout_height="110dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/tvBookTitle"/>
+        <TextView
+            android:id="@+id/tvBookContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/content"
+            android:layout_toRightOf="@+id/imgBookAvatar"
+            android:layout_below="@+id/tvBookTitle"
+            android:layout_marginLeft="10dp"
+            style="@style/colorText"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvSoLuong"
+            android:text="Quantity Sold: "
+            style="@style/colorText"
+            android:layout_alignBottom="@+id/imgBookAvatar"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgBookAvatar"
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            style="@style/colorText"
+            android:textSize="18sp"
+            android:layout_marginBottom="5dp"
+            android:id="@+id/tvValueQuantity"
+            android:layout_alignBottom="@+id/imgBookAvatar"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tvSoLuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -55,7 +55,7 @@
     <string name="btRegister">Registration</string>
     <string name="findInvoice">Find Invoice</string>
     <string name="find">Find</string>
-    <string name="findTrending">Find Trending</string>
+    <string name="findTrending">Enter Month</string>
     <string name="notify_wrong_username_password">Wrong Username or Password</string>
     <string name="findUser">Enter Name</string>
     <string name="findUsername">Find</string>

@@ -22,6 +22,7 @@ import com.example.thanh.android_project_mob204.model.Invoice;
 import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoice;
 import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoiceDetail;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class AdapterInvoice extends RecyclerView.Adapter<AdapterInvoice.ViewHolder>{
@@ -108,6 +109,11 @@ public class AdapterInvoice extends RecyclerView.Adapter<AdapterInvoice.ViewHold
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    String dateConvert = simpleDateFormat.format(daoInvoice.getAllInvoice().get(getAdapterPosition()).getInvoice_date());
+                    String subDateConvert = dateConvert.substring(5, 7);
+                    Log.e("subDate", subDateConvert);
+                    Log.e("DATE", dateConvert);
                     Log.e("sizeInvoiceDetail", daoInvoiceDetail.getAllInvoiceDetailByInvoiceID(tvInvoiceID.getText().toString()).size()+"");
                     Intent intent = new Intent(itemView.getContext(), InvoiceDetailActivity.class);
                     intent.putExtra("invoiceID", daoInvoice.getAllInvoice().get(getAdapterPosition()).getInvoice_ID());

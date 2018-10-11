@@ -23,6 +23,7 @@ import com.example.thanh.android_project_mob204.model.InvoiceDetail;
 import com.example.thanh.android_project_mob204.sqlitedao.DAOBook;
 import com.example.thanh.android_project_mob204.sqlitedao.DAOInvoiceDetail;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class AdapterInvoiceDetail extends RecyclerView.Adapter<AdapterInvoiceDetail.ViewHolder> {
@@ -57,7 +58,8 @@ public class AdapterInvoiceDetail extends RecyclerView.Adapter<AdapterInvoiceDet
         holder.tvPrice.setText(book_price);
         double price = Double.parseDouble(book_price);
         double amount = price * invoiceDetail.getPurchaseNumber();
-        holder.tvAmount.setText(amount + "");
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        holder.tvAmount.setText(formatter.format(amount)+" VND");
     }
 
     @Override
